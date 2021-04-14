@@ -8,8 +8,6 @@ namespace apiManageTest.Controllers
         public string value1 { get; set; }
         public string value2 { get; set; }
     }
-
-
     
     public class HomeController : Controller
     {
@@ -17,16 +15,13 @@ namespace apiManageTest.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
-            
-
             return View();
         }
 
         [HttpPost]   
         public JsonResult postSum(FormData formData)
         {
-            var sum = int.Parse(formData.value1) + int.Parse(formData.value2);
+            var sum = (int.Parse(formData.value1) + int.Parse(formData.value2)) * 10;
             return Json(sum);
         }
 
