@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace apiManageTest.Controllers
 {
@@ -13,12 +14,14 @@ namespace apiManageTest.Controllers
     {
         public int value { get; set; }
         public int index { get; set; }
+        public string guid { get; set; }
     }
     
     public class HomeController : Controller
     {
 
         private static int _index = 0;
+        private static string _uuid = Guid.NewGuid().ToString();
 
         public ActionResult Index()
         {
@@ -33,7 +36,7 @@ namespace apiManageTest.Controllers
 
             _index++;
 
-            var result = new ResultData() { index = _index, value = sum };
+            var result = new ResultData() { index = _index, value = sum, guid = _uuid };
 
             return Json(result);
         }
