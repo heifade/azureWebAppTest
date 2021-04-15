@@ -8,9 +8,17 @@ namespace apiManageTest.Controllers
         public string value1 { get; set; }
         public string value2 { get; set; }
     }
+
+    public class ResultData
+    {
+        public int value { get; set; }
+        public int index { get; set; }
+    }
     
     public class HomeController : Controller
     {
+
+        private static int _index = 0;
 
         public ActionResult Index()
         {
@@ -22,7 +30,12 @@ namespace apiManageTest.Controllers
         public JsonResult postSum(FormData formData)
         {
             var sum = int.Parse(formData.value1) + int.Parse(formData.value2);
-            return Json(sum);
+
+            _index++;
+
+            var result = new ResultData() { index = _index, value = sum };
+
+            return Json(result);
         }
 
         [HttpGet]
