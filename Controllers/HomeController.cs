@@ -13,14 +13,14 @@ namespace apiManageTest.Controllers
     public class ResultData
     {
         public int value { get; set; }
-        public int index { get; set; }
+        public int callIndex { get; set; }
         public string instanceId { get; set; }
     }
     
     public class HomeController : Controller
     {
 
-        private static int _index = 0;
+        private static int _callIndex = 0;
         private static string _instanceId = Guid.NewGuid().ToString();
 
         public ActionResult Index()
@@ -34,9 +34,9 @@ namespace apiManageTest.Controllers
         {
             var sum = int.Parse(formData.value1) + int.Parse(formData.value2);
 
-            _index++;
+            _callIndex++;
 
-            var result = new ResultData() { index = _index, value = sum, instanceId = _instanceId };
+            var result = new ResultData() { callIndex = _callIndex, value = sum, instanceId = _instanceId };
 
             return Json(result);
         }
